@@ -67,42 +67,42 @@ if env["platform"] == "windows":
     #     ])
     env.Append(LIBPATH=["./opencv_built/x64/vc17/staticlib/"])
     env.Append(LIBPATH=["./build_files/"])
-    env.Append(LIBS=[
-        "User32.lib",
-        "Advapi32.lib",
+    # env.Append(LIBS=[
+        # "User32.lib",
+        # "Advapi32.lib",
 
-        "ade.lib",
-        "IlmImf.lib",
-        "ippicvmt.lib",
-        "ippiw.lib",
-        "ittnotify.lib",
-        "libjpeg-turbo.lib",
-        "libopenjp2.lib",
-        "libpng.lib",
-        "libprotobuf.lib",
-        "libtiff.lib",
-        "libwebp.lib",
-        "opencv_calib3d4100.lib",
-        "opencv_core4100.lib",
-        "opencv_dnn4100.lib",
-        "opencv_features2d4100.lib",
-        "opencv_flann4100.lib",
-        "opencv_gapi4100.lib",
-        "opencv_highgui4100.lib",
-        "opencv_imgcodecs4100.lib",
-        "opencv_imgproc4100.lib",
-        "opencv_ml4100.lib",
-        "opencv_objdetect4100.lib",
-        "opencv_photo4100.lib",
-        "opencv_stitching4100.lib",
-        "opencv_video4100.lib",
-        "opencv_videoio4100.lib",
-        "zlib.lib"
-        ])
-    env.Append(LIBS=[
-        "gdi32",
-        "comdlg32"
-        ])
+        # "ade.lib",
+        # "IlmImf.lib",
+        # "ippicvmt.lib",
+        # "ippiw.lib",
+        # "ittnotify.lib",
+        # "libjpeg-turbo.lib",
+        # "libopenjp2.lib",
+        # "libpng.lib",
+        # "libprotobuf.lib",
+        # "libtiff.lib",
+        # "libwebp.lib",
+        # "opencv_calib3d4100.lib",
+        # "opencv_core4100.lib",
+        # "opencv_dnn4100.lib",
+        # "opencv_features2d4100.lib",
+        # "opencv_flann4100.lib",
+        # "opencv_gapi4100.lib",
+        # "opencv_highgui4100.lib",
+        # "opencv_imgcodecs4100.lib",
+        # "opencv_imgproc4100.lib",
+        # "opencv_ml4100.lib",
+        # "opencv_objdetect4100.lib",
+        # "opencv_photo4100.lib",
+        # "opencv_stitching4100.lib",
+        # "opencv_video4100.lib",
+        # "opencv_videoio4100.lib",
+        # "zlib.lib"
+        # ])
+    # env.Append(LIBS=[
+    #     "gdi32",
+    #     "comdlg32"
+    #     ])
 
 
 elif env["platform"] == "android":
@@ -111,48 +111,48 @@ elif env["platform"] == "android":
     env.Append(CCFLAGS=["-fexceptions"])
     env.Append(ANDROID_HOME="")
     env.Append(CPPPATH=["build_files/", "opencv_built_android/sdk/native/jni/include"])
-    env.Append(LIBPATH=["./opencv_built_android/sdk/native/staticlibs/arm64-v8a/"])
-    # env.Replace(android_api_level="24")
-    env.Append(LIBS=[
-        "libopencv_calib3d.a",
-        "libopencv_core.a",
-        "libopencv_dnn.a",
-        "libopencv_features2d.a",
-        "libopencv_flann.a",
-        "libopencv_gapi.a",
-        "libopencv_highgui.a",
-        "libopencv_imgcodecs.a",
-        "libopencv_imgproc.a",
-        "libopencv_ml.a",
-        "libopencv_objdetect.a",
-        "libopencv_photo.a",
-        "libopencv_stitching.a",
-        "libopencv_video.a",
-        "libopencv_videoio.a",
-        ])
-    env.Append(LIBPATH=["./opencv_built_android/sdk/native/3rdparty/libs/arm64-v8a"])
-    env.Append(LIBS=[
-        "libade.a",
-        "libcpufeatures.a",
-        "libIlmImf.a",
-        "libittnotify.a",
-        "liblibjpeg-turbo.a",
-        "liblibopenjp2.a",
-        "liblibpng.a",
-        "liblibprotobuf.a",
-        "liblibtiff.a",
-        "liblibwebp.a",
-        "libtegra_hal.a",
-        ])
-    env.Append(LIBPATH=["./opencv_built_android/sdk/native/3rdparty/libs/arm64-v8a"])
-    env.Append(LIBS=[
-        "android",
-        "log",
-        "libz",
-        "libmediandk",
-        "libjnigraphics",
-        "libcamera2ndk"
-    ])
+    # env.Append(LIBPATH=["./opencv_built_android/sdk/native/staticlibs/arm64-v8a/"])
+    # # env.Replace(android_api_level="24")
+    # env.Append(LIBS=[
+    #     # "libopencv_calib3d.a",
+    #     # "libopencv_core.a",
+    #     # "libopencv_dnn.a",
+    #     # "libopencv_features2d.a",
+    #     # "libopencv_flann.a",
+    #     # "libopencv_gapi.a",
+    #     # "libopencv_highgui.a",
+    #     # "libopencv_imgcodecs.a",
+    #     # "libopencv_imgproc.a",
+    #     # "libopencv_ml.a",
+    #     # "libopencv_objdetect.a",
+    #     # "libopencv_photo.a",
+    #     # "libopencv_stitching.a",
+    #     # "libopencv_video.a",
+    #     # "libopencv_videoio.a",
+    #     ])
+    # env.Append(LIBPATH=["./opencv_built_android/sdk/native/3rdparty/libs/arm64-v8a"])
+    # env.Append(LIBS=[
+    #     "libade.a",
+    #     "libcpufeatures.a",
+    #     "libIlmImf.a",
+    #     "libittnotify.a",
+    #     "liblibjpeg-turbo.a",
+    #     "liblibopenjp2.a",
+    #     "liblibpng.a",
+    #     "liblibprotobuf.a",
+    #     "liblibtiff.a",
+    #     "liblibwebp.a",
+    #     "libtegra_hal.a",
+    #     ])
+    # env.Append(LIBPATH=["./opencv_built_android/sdk/native/3rdparty/libs/arm64-v8a"])
+    # env.Append(LIBS=[
+    #     "android",
+    #     "log",
+    #     "libz",
+    #     "libmediandk",
+    #     "libjnigraphics",
+    #     "libcamera2ndk"
+    # ])
 
 
 sources = [Glob("build_files/*.cpp"), Glob("build_files/oraculum/*.cpp"), Glob("build_files/miscObjects/*.cpp")]

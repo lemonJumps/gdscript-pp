@@ -5,17 +5,6 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-// #include "scannur.hpp"
-// #include "oraculum/oraculum.hpp"
-// #include "miscObjects/vectorWrapper.hpp"
-// #include "miscObjects/projector.hpp"
-// #include "miscObjects/opencvHelper.hpp"
-// #include "miscObjects/camWrapper.hpp"
-// #include "miscObjects/imgManip.hpp"
-
-#include "cv2Interface/modules.hpp"
-
-// #include "godot_std_wrap/vector_array.hpp"
 
 using namespace godot;
 
@@ -24,7 +13,6 @@ void initialize_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
-	ocv_modules::register_classes();
 	// ClassDB::register_class<VectorArray<int>>();
 	// ClassDB::register_class<ImgManip>();
 
