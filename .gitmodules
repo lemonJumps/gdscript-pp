@@ -1,0 +1,3 @@
+[submodule "plogon/godot-cpp"]
+	path = plogon/godot-cpp
+	url = https://github.com/godotengine/godot-cpp
