@@ -1,5 +1,6 @@
 
 #include "scriptExtension.hpp"
+#include "scriptInstance.hpp"
 #include <godot_cpp/godot.hpp>
 
 using namespace godot;
@@ -75,8 +76,8 @@ godot::StringName GDscriptpp::_get_instance_base_type() const
 
 void * GDscriptpp::_instance_create(godot::Object *p_for_object) const
 {
- 	LuauScriptInstance *internal = memnew(LuauScriptInstance(Ref<Script>(this), p_for_object, type));
-	return internal::gdextension_interface_script_instance_create3(&LuauScriptInstance::INSTANCE_INFO, internal);
+ 	GDscriptppInstance *internal = memnew(GDscriptppInstance(Ref<Script>(this), p_for_object, type));
+	return internal::gdextension_interface_script_instance_create3(&GDscriptppInstance::INSTANCE_INFO, internal);
 }
 
 void * GDscriptpp::_placeholder_instance_create(godot::Object *p_for_object) const
