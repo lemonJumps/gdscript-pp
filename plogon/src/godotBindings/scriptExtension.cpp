@@ -1,5 +1,6 @@
 
 #include "scriptExtension.hpp"
+#include <godot_cpp/godot.hpp>
 
 using namespace godot;
 
@@ -62,9 +63,10 @@ bool GDscriptpp::_inherits_script(const godot::Ref<godot::Script> &p_script) con
 
 godot::StringName GDscriptpp::_get_instance_base_type() const
 {
-    if (native.is_valid()) {
-        return native->get_name();
-    }
+    /// @todo if native class exists use that instead,
+    // if (native.is_valid()) {
+    //     return native->get_name();
+    // }
     if (base.is_valid() && base->is_valid()) {
         return base->get_instance_base_type();
     }
@@ -73,22 +75,8 @@ godot::StringName GDscriptpp::_get_instance_base_type() const
 
 void * GDscriptpp::_instance_create(godot::Object *p_for_object) const
 {
-    GDScript *top = this;
-    while (top->_base) {
-        top = top->_base;
-    }
-
-    if (top->native.is_valid()) {
-        if (!ClassDB::is_parent_class(p_this->get_class_name(), top->native->get_name())) {
-            if (EngineDebugger::is_active()) {
-                GDScriptLanguage::get_singleton()->debug_break_parse(_get_debug_path(), 1, "Script inherits from native type '" + String(top->native->get_name()) + "', so it can't be assigned to an object of type: '" + p_this->get_class() + "'");
-            }
-            ERR_FAIL_V_MSG(nullptr, "Script inherits from native type '" + String(top->native->get_name()) + "', so it can't be assigned to an object of type '" + p_this->get_class() + "'" + ".");
-        }
-    }
-
-    Callable::CallError unchecked_error;
-    return _create_instance(nullptr, 0, p_this, Object::cast_to<RefCounted>(p_this) != nullptr, unchecked_error);
+ 	LuauScriptInstance *internal = memnew(LuauScriptInstance(Ref<Script>(this), p_for_object, type));
+	return internal::gdextension_interface_script_instance_create3(&LuauScriptInstance::INSTANCE_INFO, internal);
 }
 
 void * GDscriptpp::_placeholder_instance_create(godot::Object *p_for_object) const
@@ -266,111 +254,266 @@ godot::Error GDscriptpp::_reload(bool p_keep_state)
     return OK;
 }
 
+/**
+ * @brief 
+ * @todo figure out in which manner to return the data
+ * 
+ * @note is used only in editor
+ * 
+ * @return godot::TypedArray<godot::Dictionary> 
+ */
 godot::TypedArray<godot::Dictionary> GDscriptpp::_get_documentation() const
 {
 
 }
 
+/**
+ * @brief 
+ * @note is used only in editor
+ * @return godot::String 
+ */
 godot::String GDscriptpp::_get_class_icon_path() const
 {
 
 }
 
+/**
+ * @brief check if script has method?
+ * 
+ * @param p_method 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_has_method(const godot::StringName &p_method) const
 {
 	// return member_functions.has(p_method);
 }
 
+/**
+ * @brief check if script has method?
+ * 
+ * @param p_method 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_has_static_method(const godot::StringName &p_method) const
 {
 
 }
 
+/**
+ * @brief 
+ * 
+ * @param p_method 
+ * @return godot::Variant 
+ */
 godot::Variant GDscriptpp::_get_script_method_argument_count(const godot::StringName &p_method) const
 {
 
 }
 
+/**
+ * @brief 
+ * 
+ * @todo figure out in which manner to return the data
+ * 
+ * @param p_method 
+ * @return godot::Dictionary 
+ */
 godot::Dictionary GDscriptpp::_get_method_info(const godot::StringName &p_method) const
 {
 
 }
 
+/**
+ * @brief returns wether script runs as tool or not
+ * 
+ * @todo check when this is read out
+ * 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_is_tool() const
 {
 
 }
 
+/**
+ * @brief returns wether the script is valid
+ * 
+ * @todo check when this is read out
+ * 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_is_valid() const
 {
 
 }
 
+/**
+ * @brief returns wether the script is abstract
+ * 
+ * @todo check when this is read out
+ * @todo what is abstract in this case
+ * 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_is_abstract() const
 {
 
 }
 
+/**
+ * @brief return the script language singleton
+ * 
+ * @todo figure out how this singleton is used and what it needs
+ * 
+ * @return godot::ScriptLanguage* 
+ */
 godot::ScriptLanguage * GDscriptpp::_get_language() const
 {
 
 }
 
+/**
+ * @brief check if script contains signal
+ * 
+ * @param p_signal 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_has_script_signal(const godot::StringName &p_signal) const
 {
 
 }
 
+/**
+ * @brief get list of signals
+ * 
+ * @return godot::TypedArray<godot::Dictionary> 
+ */
 godot::TypedArray<godot::Dictionary> GDscriptpp::_get_script_signal_list() const
 {
 
 }
 
+/**
+ * @brief 
+ * 
+ * @todo figure out what this does
+ * 
+ * @param p_property 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_has_property_default_value(const godot::StringName &p_property) const
 {
 
 }
 
+/**
+ * @brief 
+ * 
+ * @todo differs from implementation
+ * @todo check what value needs to be returned
+ * 
+ * @param p_property 
+ * @return godot::Variant 
+ */
 godot::Variant GDscriptpp::_get_property_default_value(const godot::StringName &p_property) const
 {
 
 }
 
+/**
+ * @brief gets called when exports are supposed to be updated?
+ * 
+ * @todo figure out what needs to be called
+ * 
+ */
 void GDscriptpp::_update_exports()
 {
 
 }
 
+/**
+ * @brief return methods
+ * @todo figure out output format
+ * 
+ * @return godot::TypedArray<godot::Dictionary> 
+ */
 godot::TypedArray<godot::Dictionary> GDscriptpp::_get_script_method_list() const
 {
 
 }
 
+/**
+ * @brief return prperties
+ * @todo figure out output format
+ * 
+ * @return godot::TypedArray<godot::Dictionary> 
+ */
 godot::TypedArray<godot::Dictionary> GDscriptpp::_get_script_property_list() const
 {
 
 }
 
+/**
+ * @brief return at which line the member is ?
+ * 
+ * @param p_member 
+ * @return int32_t 
+ */
 int32_t GDscriptpp::_get_member_line(const godot::StringName &p_member) const
 {
 
 }
 
+/**
+ * @brief return a list of constants
+ * @todo figure out output format
+ * 
+ * @return godot::Dictionary 
+ */
 godot::Dictionary GDscriptpp::_get_constants() const
 {
 
 }
 
+/**
+ * @brief return a list of member names?
+ * @todo figure out output format
+ * 
+ * @return godot::Dictionary 
+ */
 godot::TypedArray<godot::StringName> GDscriptpp::_get_members() const
 {
 
 }
 
+/**
+ * @brief 
+ * 
+ * @todo figure out, idk what this even is
+ * 
+ * @return true 
+ * @return false 
+ */
 bool GDscriptpp::_is_placeholder_fallback_enabled() const
 {
 
 }
 
+/**
+ * @brief Remote procedure call config
+ * @todo figure out output format
+ * 
+ * @todo what is rpc config???
+ * 
+ * @return godot::Variant 
+ */
 godot::Variant GDscriptpp::_get_rpc_config() const
 {
 

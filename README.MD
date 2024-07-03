@@ -26,4 +26,8 @@ Please be nice to all the devs, everyone is trying their best.
 
 ### core functionality:
 #### VM:
-gdspp VM is in fact only used for saving and loading data, and then calling this data. 
+the VM is in fact only used for saving, loading and calling data.
+it's other use is to simply control the code flow.
+it currently only deals with the bool type as that is all that is needed for this functionality.
+
+So technically it is not tied to any specific programming language.

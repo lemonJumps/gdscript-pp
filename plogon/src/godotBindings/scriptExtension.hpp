@@ -14,13 +14,15 @@
 
 class GDscriptpp : public godot::ScriptExtension
 {
+    bool valid = false;
+
     godot::String name;
 
     GDCLASS(GDscriptpp, godot::ScriptExtension)
 
-	godot::SelfList<GDscriptpp> script_list;
+    godot::SelfList<GDscriptpp> script_list;
 
-	godot::Ref<GDscriptpp> base;
+    godot::Ref<GDscriptpp> base;
 
     virtual ~GDscriptpp()
     {}
@@ -62,4 +64,7 @@ public:
     godot::TypedArray<godot::StringName> _get_members() const override;
     bool _is_placeholder_fallback_enabled() const override;
     godot::Variant _get_rpc_config() const override;
+
+    virtual bool is_valid() const { return valid; }
+    virtual bool is_abstract() const { return false; }
 };

@@ -7,8 +7,59 @@ Which makes it much closer to the high level implementation, but also means that
 
 While this will power the gdscript++ it can be used separately, or even with other languages, that is dependent on the JIT.
 
-## calling trough std::function
+## calling functions
+I've stumbled upon a very cool design:
+which deals with varargs
+```cpp
+#include <type_traits>
 
+template<typename R, typename... Args>
+auto call(R(*function)(Args...), Args... args) -> typename std::enable_if<!std::is_same<R, void>::value, R>::type {
+    return function(args...);
+}
+
+
+template<typename... Args>
+void call(void (*function)(Args...), Args... args) {
+    function(args...);
+}
+
+
+int funcTestA(int a, float b, int c)
+{
+    return a * b * c;
+}
+
+int funcTestB(int a, int c)
+{
+    return a * c;
+}
+
+int funcTestC()
+{
+    return 0;
+}
+
+void funcTestE()
+{
+    volatile int a = 0;
+}
+
+int main() {
+    int a = 1;
+    float b = 2;
+    int c = 3;
+
+    volatile int result;
+
+    result = call(funcTestA, a, b, c);
+    result = call(funcTestB, a, c);
+    result = call(funcTestC);
+    call(funcTestE);
+
+    return 0;
+}
+```
 
 
 ## buffers and storage
@@ -25,7 +76,7 @@ Stores pointer to data, could be classes too.
 Stack... used for stack yeah lol
 
 ## operations
-Operators have 32 bit value altho only 8 bits are used.
+Operators have 32 bit value although only 8 bits are used.
 This is to improve cache sizing
 
 Operators are always followed by 3 32 bit arguments, with these colors:
