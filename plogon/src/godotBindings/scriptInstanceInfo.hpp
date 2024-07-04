@@ -16,7 +16,7 @@
  * @brief class implements and generalizes GDExtensionScriptInstanceInfo
  * 
  */
-class scriptInstanceInfo
+class ScriptInstanceInfo
 {
 	virtual GDExtensionBool set_func(
         GDExtensionScriptInstanceDataPtr p_instance, 
