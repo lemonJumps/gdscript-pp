@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file scriptInstanceInfo.hpp
  * @author Lemon Jumps (you@domain.com)

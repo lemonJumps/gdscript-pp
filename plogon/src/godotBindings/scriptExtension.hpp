@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file scriptExtension.hpp
  * @author Lemon Jumps (you@domain.com)

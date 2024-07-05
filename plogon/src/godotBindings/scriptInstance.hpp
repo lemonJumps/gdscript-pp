@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file scriptInstance.hpp
  * @author Lemon Jumps (you@domain.com)
@@ -10,6 +12,7 @@
  */
 
 #include <godot_cpp/classes/script_extension.hpp>
+#include <godot_cpp/classes/script_language.hpp>
 #include <godot_cpp/templates/pair.hpp>
 
 #include "scriptInstanceInfo.hpp"
@@ -54,7 +57,7 @@ class CommonScriptInstance : ScriptInstanceInfo
 
 	virtual godot::Object *get_owner() const = 0;
 	virtual godot::Ref<GDscriptpp> get_script() const = 0;
-	ScriptLanguage *get_language() const;
+	godot::ScriptLanguage *get_language() const;
 };
 
 class GDscriptppInstance : CommonScriptInstance

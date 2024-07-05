@@ -84,7 +84,7 @@ void CommonScriptInstance::init_script_instance_info_common(GDExtensionScriptIns
 
 static GDExtensionScriptInstanceInfo3 init_script_instance_info() {
 	GDExtensionScriptInstanceInfo3 info;
-	ScriptInstance::init_script_instance_info_common(info);
+	CommonScriptInstance::init_script_instance_info_common(info);
 
 	info.property_can_revert_func = [](void *p_self, GDExtensionConstStringNamePtr p_name) -> GDExtensionBool {
 		return INSTANCE_SELF->property_can_revert(*((godot::StringName *)p_name));

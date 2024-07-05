@@ -31,3 +31,38 @@ it's other use is to simply control the code flow.
 it currently only deals with the bool type as that is all that is needed for this functionality.
 
 So technically it is not tied to any specific programming language.
+
+### planned feature list:
+
+The following is a list of features that are planned, and their status.
+
+|name|partially implemented|fully working|
+|-|-|-|
+| VM                                    | ❌ | ❌ |
+| Compiler                              | ❌ | ❌ |
+| JIT                                   | ❌ | ❌ |
+| Variables                             | ❌ | ❌ |
+| Enums                                 | ❌ | ❌ |
+| Signals                               | ❌ | ❌ |
+| Operators                             | ❌ | ❌ |
+| Exports                               | ❌ | ❌ |
+| Tool                                  | ❌ | ❌ |
+| if statements                         | ❌ | ❌ |
+| for loops                             | ❌ | ❌ |
+| while loops                           | ❌ | ❌ |
+| Class definitions                     | ❌ | ❌ |
+| Function definitions                  | ❌ | ❌ |
+| ----- additional features -----       | - | - |
+| Scope limiting with { }               | ❌ | ❌ |
+| Generators                            | ❌ | ❌ |
+| List comprehension                    | ❌ | ❌ |
+| Dict comprehension                    | ❌ | ❌ |
+| GOTO statements                       | ❌ | ❌ |
+| Conversionless inter-library calls    | ❌ | ❌ |
+| Custom types                          | ❌ | ❌ |
+| Memory limiting                       | ❌ | ❌ |
+| C style type casting                  | ❌ | ❌ |
+|                                       | ❌ | ❌ |
+|                                       | ❌ | ❌ |
+|                                       | ❌ | ❌ |
+|                                       | ❌ | ❌ |
